@@ -1,16 +1,19 @@
-var http = require("http");
+//express,ejsモジュールのロード．expressはインスタンス化も行う
+var express = require('express');
+var app = express();
+require('ejs');
 
-function onRequest(request, response) {
-// This is only a template.
-// Should parse the URL, open the file, and return the contents.
-  console.log("Request received.");
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
-}
+// ビューエンジンにEJSを指定
+app.set('view engine', 'ejs');
+//8000portでlisten()
+var server = app.listen(8000, () => console.log('Node.js is listening to PORT -> '+server.address().port))
 
-var server = http.createServer(onRequest);
+app.get('/map', (req, res)=>{
+    console.log('Request received :map page:');
+    res.render('./map.ejs',{
+        title:'ルート検索',
+        initStart:'東京都江東区豊洲3-7-5',
+        initGoal:'埼玉県さいたま市見沼区大字深作307番地'
+    });
+});
 
-server.listen(8888);
-
-console.log("Server has started.");

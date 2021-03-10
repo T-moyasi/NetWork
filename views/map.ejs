@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%# callback =でコールバック指定 librariesで他のapi指定 vはマップのバージョンweeklyは最新 %>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./googleMap.css" />
+    <script src="./routeGuid.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <b>Start: </b>
+      <input type="text" id="start" value=<%= initStart>></input>
+      <br>
+      <b>Goal :</b>
+      <input type="text" id="goal" value=<%= initGoal>></input> 
+      <input type="submit" id="submit" value="ルート検索"></input>
+    </div>
+    <div id="map"></div>
+  </body>
+</html>
